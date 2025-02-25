@@ -1,12 +1,14 @@
 
-# Securing a Web Application
+# Spring Data JPA
 
 ## Hướng dẫn chạy project
+Để chạy project Spring Boot sử dụng Spring Data JPA cần thực hiện các bước sau:
 
 ### **1. Cài đặt môi trường**
 Trước khi chạy project, đảm bảo đã cài đặt các công cụ sau:
 - **Java 17+** (hoặc phiên bản Java phù hợp với Spring Boot)
 - **Maven** (Để kiểm tra, chạy lệnh `mvn -v` trên terminal)
+- **Postman** (Để thực hiện các request API)
 - **VS Code hoặc IntelliJ IDEA** (Để chỉnh sửa code nếu cần)
 
 ### **2. Chạy project**
@@ -21,44 +23,56 @@ Lệnh này sẽ:
 
 ---
 
-## **Các bước chạy thử**
-Dưới đây là các bước minh chứng rằng hệ thống hoạt động đúng:
+## **Hướng dẫn sử dụng API với Postman**
+Dưới đây là các bước minh chứng rằng API hoạt động đúng:
 
-### **Bước 1: Đăng nhập dưới quyền admin**
+### **Bước 1: Thêm dữ liệu Employee**
+- Mở Postman, chọn phương thức `POST`
 - Nhập URL: `http://localhost:8080/`
-- Sử dụng tài khoản **admin** và mật khẩu **admin123** để đăng nhập dưới quyền ADMIN.
-- Truy cập thành công với đường dẫn `http://localhost:8080/admin`.
+- Bấm **Send** để gửi yêu cầu
 
-![Bước 1](img3/1.png)
-> Hình ảnh trên cho thấy giao diện sau khi đăng nhập thành công với admin.
+![Bước 1](img2/1.png)
+> Hình ảnh trên cho thấy quá trình gửi request `POST` để tạo danh sách Employee ban đầu.
 
 ---
 
-### **Bước 2: Đăng xuất khỏi admin**
-- Chọn phương thức `logout`
-- Lập tức quay trở về giao diện login với đường dẫn `http://localhost:8080/login`.
+### **Bước 2: Hiển thị toàn bộ Employee**
+- Chọn phương thức `GET`
+- Nhập URL: `http://localhost:8080/findall`
 - Bấm **Send**
 
-![Bước 2](img3/2.png)
-> Hình ảnh trên cho thấy đã quay trở về màn hình login thành công.
+![Bước 2](img2/2.png)
+> Hình ảnh trên cho thấy danh sách Employee đã được thêm thành công.
 
 ---
 
-### **Bước 3: Đăng nhập dưới quyền User**
-- Sử dụng tài khoản **user** và mật khẩu **password** để đăng nhập dưới quyền USER.
-- Truy cập thành công đường dẫn `http://localhost:8080/hello`
+### **Bước 3: Tìm Employee theo ID**
+- Chọn phương thức `GET`
+- Nhập URL: `http://localhost:8080/findbyid/1` (Thay `1` bằng ID mong muốn)
 - Bấm **Send**
 
-![Bước 3](img3/3.png)
-> Hình ảnh trên hiển thị đã đăng nhập thành công với user.
+![Bước 3](img2/3.png)
+> Hình ảnh trên hiển thị thông tin của Employee có ID cụ thể.
 
 ---
 
-### **Bước 4: Đăng nhập dưới username không tồn tại**
-- Nhập username và password bất kì sẽ trả về kết quả `Invalid username or password`
+### **Bước 4: Xóa toàn bộ Employee**
+- Chọn phương thức `DELETE`
+- Nhập URL: `http://localhost:8080/delete`
+- Bấm **Send**
 
-![Bước 4](img3/4.png)
-> Hình ảnh trên cho thấy việc Login đã thất bại.
+![Bước 4](img2/4.png)
+> Hình ảnh trên cho thấy việc gửi request `DELETE` để xóa toàn bộ dữ liệu Employee.
+
+---
+
+### **Bước 5: Kiểm tra dữ liệu sau khi xóa**
+- Chọn phương thức `GET`
+- Nhập URL: `http://localhost:8080/findall`
+- Bấm **Send**
+
+![Bước 5](img2/5.png)
+> Hình ảnh trên chứng minh rằng danh sách Employee đã bị xóa hoàn toàn.
 
 ---
 
